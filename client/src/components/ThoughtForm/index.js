@@ -6,12 +6,13 @@ const ThoughtForm = () => {
     thought: '',
   });
   const [characterCount, setCharacterCount] = useState(0);
+  const [imageUploaded, setImageUploaded] = useState(true);
 
   const fileInput = useRef(null);
 
   const handleImageUpload = (event) => {
     event.preventDefault();
-    console.log('here we are');
+    setImageUploaded(false);
     const data = new FormData();
     data.append('image', fileInput.current.files[0]);
 
@@ -26,8 +27,7 @@ const ThoughtForm = () => {
         const postResponse = await res.json();
         setFormState({ ...formState, image: postResponse.Location });
 
-        console.log(postResponse.Location);
-
+        setImageUploaded(true);
         return postResponse.Location;
       } catch (error) {
         console.error(error);
@@ -100,8 +100,8 @@ const ThoughtForm = () => {
             Upload
           </button>
         </label>
-        <button className='btn col-12 ' type='submit'>
-          Submit
+        <button className='btn col-12' disabled={imageUploaded} type='submit'>
+          {imageUploaded ? 'Submit' : 'Image uploading, please wait'}
         </button>
       </form>
     </div>

@@ -44,7 +44,6 @@ const Profile = (props) => {
           ) : (
             <ThoughtList
               thoughts={thoughts}
-              username={userParam}
               title={`${userParam}'s thoughts...`}
             />
           )}

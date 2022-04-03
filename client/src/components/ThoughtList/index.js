@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 // Renders the list of thoughts
-const ThoughtList = ({ thoughts, title, username }) => {
+const ThoughtList = ({ thoughts, title }) => {
   if (!thoughts.length) {
     return <h3>No Thoughts Yet</h3>;
   }
@@ -18,11 +18,20 @@ const ThoughtList = ({ thoughts, title, username }) => {
                 style={{ fontWeight: 700 }}
                 className='text-light'
               >
-                {username}'s thought on{' '}
+                {thought.username}'s thought on{' '}
                 {new Date(parseInt(thought.createdAt)).toString()}
               </Link>{' '}
             </p>
             {thought.thought && <p className='px-2 mt-2'>{thought.thought}</p>}
+            {thought.image && (
+              <p className='px-2'>
+                <img
+                  className='mt-3 ml-4 thought-image'
+                  src={thought.image}
+                  alt='S3 bucket response'
+                />
+              </p>
+            )}
           </div>
         ))}
     </div>
