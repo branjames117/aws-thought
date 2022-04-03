@@ -100,7 +100,7 @@ const ThoughtForm = () => {
             Upload
           </button>
         </label>
-        <button className='btn col-12' disabled={imageUploaded} type='submit'>
+        <button className='btn col-12' disabled={!imageUploaded} type='submit'>
           {imageUploaded ? 'Submit' : 'Image uploading, please wait'}
         </button>
       </form>
